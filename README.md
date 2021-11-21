@@ -50,14 +50,6 @@ Default: `''`
 
 Path to where the images are located in case the src attribute on the image is not enough to locate them on the system.
 
-
-##### fileTypes
-
-Type: `array`\
-Default: `['.html', '.htm'.]`
-
-Array of file extensions to be processed, anything else will be ignored.
-
 ##### classMultipliers
 
 Type: `object`\

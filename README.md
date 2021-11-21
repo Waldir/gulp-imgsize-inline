@@ -45,7 +45,7 @@ Type: `object`
 
 ##### path
 
-Type: `string`
+Type: `string`\
 Default: `''`
 
 Path to where the images are located in case the src attribute on the image is not enough to locate them on the system.
@@ -53,14 +53,14 @@ Path to where the images are located in case the src attribute on the image is n
 
 ##### fileTypes
 
-Type: `array`
+Type: `array`\
 Default: `['.html', '.htm'.]`
 
 Array of file extensions to be processed, anything else will be ignored.
 
 ##### classMultipliers
 
-Type: `object`
+Type: `object`\
 Default: `{}`
 
 An object with class names as keys and a number to multiply by as the value. The following example will multiply the width and height of all of the images that have the class of `x2` by 2.

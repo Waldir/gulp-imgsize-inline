@@ -1,11 +1,15 @@
 {
   "name": "gulp-imgsize-inline",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Inline image width and height dynamically on HTML files.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Waldir/gulp-imgsize-inline"
+},
   "keywords": [
     "gulp",
     "image",

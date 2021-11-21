@@ -1,0 +1,41 @@
+const fs = require('fs');
+const probe  = require('probe-image-size');
+const through = require('through2');
+
+module.exports = function imgSizeInline(options) {
+    options = {
+        path:             '',
+        fileTypes:        ['.html', '.htm'],
+        classMultipliers: {},
+        ...options,
+    };
+
+    return through.obj((file, _enc, next) => {
+        if (file.isNull() || options.fileTypes.indexOf(file.extname) === -1) {
+            next(null, file);
+            return;
+        }
+
+        file.contents.toString().replace(/<img[^>]*src="([^"]*)"[^>]*>/g, (match, url) => {
+            const path = options.path + url;
+            const size = fs.existsSync(path) ? probe.sync(fs.readFileSync(path)) : null;
+            if (size) {
+                if (Object.keys(options.classMultipliers).length > 0) {
+                    const classMatch = match.match(/class=["']([^"']*)["']/);
+                    const classes = classMatch[1] ? classMatch[1].split(' ') : [];
+
+                    for (const className of classes) {
+                        if (options.classMultipliers[className]) {
+                            size.width *= options.classMultipliers[className];
+                            size.height *= options.classMultipliers[className];
+                            break;
+                        }
+                    }
+                }
+                return `${match} width="${size.width}" height="${size.height}"`;
+            }
+            return match;
+        });
+        next(null, file);
+    });
+};

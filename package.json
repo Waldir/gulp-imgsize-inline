@@ -1,6 +1,6 @@
 {
   "name": "gulp-imgsize-inline",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Inline image width and height dynamically on HTML files.",
   "main": "index.js",
   "scripts": {

@@ -22,7 +22,7 @@ module.exports = function imgSizeInline(options) {
             if (size) {
                 if (Object.keys(options.classMultipliers).length > 0) {
                     const classMatch = match.match(/class=["']([^"']*)["']/);
-                    const classes = classMatch[1] ? classMatch[1].split(' ') : [];
+                    const classes = classMatch && classMatch[1] ? classMatch[1].split(' ') : [];
 
                     for (const className of classes) {
                         if (options.classMultipliers[className]) {

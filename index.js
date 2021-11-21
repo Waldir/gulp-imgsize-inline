@@ -16,7 +16,7 @@ module.exports = function imgSizeInline(options) {
             return;
         }
 
-        file.contents.toString().replace(/<img[^>]*src="([^"]*)"[^>]*>/g, (match, url) => {
+        file.contents = Buffer.from(String(file.contents).replace(/<img[^>]*src="([^"]*)"[^>]*>/g, (match, url) => {
             const path = options.path + url;
             const size = fs.existsSync(path) ? probe.sync(fs.readFileSync(path)) : null;
             if (size) {
@@ -32,10 +32,10 @@ module.exports = function imgSizeInline(options) {
                         }
                     }
                 }
-                return `${match} width="${size.width}" height="${size.height}"`;
+                return match.replace(/\/?>$/, ` width="${size.width}" height="${size.height}" />`);
             }
             return match;
-        });
+        }));
         next(null, file);
     });
 };

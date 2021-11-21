@@ -5,13 +5,12 @@ const through = require('through2');
 module.exports = function imgSizeInline(options) {
     options = {
         path:             '',
-        fileTypes:        ['.html', '.htm'],
         classMultipliers: {},
         ...options,
     };
 
     return through.obj((file, _enc, next) => {
-        if (file.isNull() || options.fileTypes.indexOf(file.extname) === -1) {
+        if (file.isNull() || file.isStream() || !file.isBuffer()) {
             next(null, file);
             return;
         }

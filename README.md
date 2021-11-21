@@ -30,7 +30,6 @@ gulp.task('imgSizeInline', () => {
   gulp.src('./*.html')
     .pipe(imgSizeInline({
       path: './', // default ''
-      fileTypes: ['.html'], // default ['.html', '.htm']
       classMultipliers: {
           'x2': 2
       }, // default {}

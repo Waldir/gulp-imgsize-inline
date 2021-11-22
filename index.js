@@ -25,8 +25,8 @@ module.exports = function imgSizeInline(options) {
 
                     for (const className of classes) {
                         if (options.classMultipliers[className]) {
-                            size.width *= options.classMultipliers[className];
-                            size.height *= options.classMultipliers[className];
+                            size.width /= options.classMultipliers[className];
+                            size.height /= options.classMultipliers[className];
                             break;
                         }
                     }
